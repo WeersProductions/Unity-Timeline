@@ -24,6 +24,7 @@ public class ClipRaw : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
 		ClipData clipData = new ClipData();
 		clipData.Title = "A title";
 		clipData.Thumbnail = _icon;
+		clipData.Duration = 100;
 		SetClip(clipData);
 	}
 

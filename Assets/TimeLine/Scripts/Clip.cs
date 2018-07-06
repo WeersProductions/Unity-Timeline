@@ -20,8 +20,7 @@ public class Clip : MonoBehaviour, IDragOwner {
 
 	private RectTransform _rectTransform;
 
-	private Vector2 _originalLocalPointerPosition;
-	private Vector2 _originalSizeDelta;
+	private ClipData _clipData;
 
 	private void Awake() {
 		_rectTransform = this.GetComponent<RectTransform>();
@@ -29,6 +28,11 @@ public class Clip : MonoBehaviour, IDragOwner {
 		for(int i = 0; i < dragHandlers.Length; i++) {
 			dragHandlers[i].SetOwner(this);
 		}
+	}
+
+	public void SetClip(ClipData clipData) {
+		this._clipData = clipData;
+		SetWidth(clipData.Duration);
 	}
 
 	public void DragLeft(PointerEventData eventData) {
@@ -64,9 +68,7 @@ public class Clip : MonoBehaviour, IDragOwner {
 	}
 
 	private void ResizeClip(DragHandler.Direction direction, PointerEventData eventData) {
-		// Vector2 localPointerPosition;
-		// RectTransformUtility.ScreenPointToLocalPointInRectangle (_rectTransform, eventData.position, eventData.pressEventCamera, out localPointerPosition);
-		Vector2 delta = eventData.delta;//localPointerPosition - _originalLocalPointerPosition;
+		Vector2 delta = eventData.delta;
 		Vector2 difference = Vector2.zero;
 
 		int multiplier = 1;
@@ -96,5 +98,13 @@ public class Clip : MonoBehaviour, IDragOwner {
 		_rectTransform.sizeDelta += difference;		
 		Vector2 deltaPosition = multiplier * new Vector3(_rectTransform.pivot.x * difference.x, _rectTransform.pivot.y * difference.y, 0);
 		_rectTransform.anchoredPosition += deltaPosition;
+	}
+
+	public void SetHeight(float height) {
+		_rectTransform.sizeDelta = new Vector2(_rectTransform.sizeDelta.x, height);
+	}
+
+	public void SetWidth(float width) {
+		_rectTransform.sizeDelta = new Vector2(width, _rectTransform.sizeDelta.y);
 	}
 }

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Timebar : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler{
 
+	[SerializeField]
+	private Clip _clipPrefab;
+
 	private List<Clip> _clips;
 
 	[SerializeField]
@@ -14,13 +17,19 @@ public class Timebar : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoint
 	private Color normalColor = Color.white;
 	private Color highlightColor = Color.yellow;
 
+	private RectTransform _rectTransform;
+
     public void OnDrop(PointerEventData eventData)
     {
         _containerImage.color = normalColor;
 
 		ClipData clipDrag = GetClipDrag(eventData);
 		if(clipDrag != null) {
-			Debug.Log("Dropped a clip!");
+			Clip clip = Instantiate(_clipPrefab, eventData.position, Quaternion.identity);
+			clip.transform.SetParent(this.transform);
+			clip.transform.position = eventData.position;
+			clip.SetHeight(0.2f * _rectTransform.rect.height);
+			clip.SetClip(clipDrag);
 		}
     }
 
@@ -38,6 +47,7 @@ public class Timebar : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoint
 
     private void Awake() {
 		_clips = new List<Clip>();
+		_rectTransform = this.GetComponent<RectTransform>();
 	}
 
 	private ClipData GetClipDrag(PointerEventData data) {
