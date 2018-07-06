@@ -25,10 +25,11 @@ public class Timebar : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoint
 
 		ClipData clipDrag = GetClipDrag(eventData);
 		if(clipDrag != null) {
-			Clip clip = Instantiate(_clipPrefab, eventData.position, Quaternion.identity);
+			Vector3 clipPosition = new Vector3(eventData.position.x, _rectTransform.position.y, _rectTransform.position.z);
+			Clip clip = Instantiate(_clipPrefab, clipPosition, Quaternion.identity);
 			clip.transform.SetParent(this.transform);
-			clip.transform.position = eventData.position;
-			clip.SetHeight(0.2f * _rectTransform.rect.height);
+			// clip.transform.position = new Vector2(eventData.position.x, _rectTransform.position.z);
+			clip.SetHeight(_rectTransform.rect.height);
 			clip.SetClip(clipDrag);
 		}
     }

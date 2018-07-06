@@ -101,10 +101,10 @@ public class Clip : MonoBehaviour, IDragOwner {
 	}
 
 	public void SetHeight(float height) {
-		_rectTransform.sizeDelta = new Vector2(_rectTransform.sizeDelta.x, height);
+		_rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
 	}
 
 	public void SetWidth(float width) {
-		_rectTransform.sizeDelta = new Vector2(width, _rectTransform.sizeDelta.y);
+		_rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
 	}
 }
