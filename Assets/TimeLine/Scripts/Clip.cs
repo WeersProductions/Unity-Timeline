@@ -22,6 +22,9 @@ public class Clip : MonoBehaviour, IDragOwner {
 
 	private ClipData _clipData;
 
+	private int _startFrame;
+	private int _endFrame;
+
 	private void Awake() {
 		_rectTransform = this.GetComponent<RectTransform>();
 		DragHandler[] dragHandlers = this.GetComponentsInChildren<DragHandler>();
