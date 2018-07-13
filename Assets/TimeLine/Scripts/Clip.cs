@@ -112,6 +112,10 @@ public class Clip : MonoBehaviour, IDragOwner, IBeginDragHandler, IEndDragHandle
 		_rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
 	}
 
+	public void MovePosition(float deltaX) {
+		_rectTransform.anchoredPosition += new Vector2(deltaX, 0);
+	}
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         
@@ -140,7 +144,7 @@ public class Clip : MonoBehaviour, IDragOwner, IBeginDragHandler, IEndDragHandle
 			PrefabController.ClipDragCurrent.SetPosition(eventData.position);
 			return;
 		}
-		_rectTransform.anchoredPosition += new Vector2(eventData.delta.x, 0);
+		MovePosition(eventData.delta.x);
     }
 
     public ClipData GetClip()

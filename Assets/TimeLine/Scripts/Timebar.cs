@@ -53,7 +53,7 @@ public class Timebar : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoint
 
 	private ClipData GetClipDrag(PointerEventData data) {
 		GameObject dragObj = data.pointerDrag;
-		if(!dragObj) {
+		if(!dragObj || !PrefabController.ClipDragCurrent) {
 			return null;
 		}
 
@@ -64,5 +64,11 @@ public class Timebar : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoint
 		}
 
 		return clipHandler.GetClip();
+	}
+
+	public void MoveTime(float time) {
+		for(int i = 0; i < _clips.Count; i++){
+			_clips[i].MovePosition(time);
+		}
 	}
 }
