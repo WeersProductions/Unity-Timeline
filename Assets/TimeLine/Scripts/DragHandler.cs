@@ -27,6 +27,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public void OnDrag(PointerEventData eventData)
     {
+		eventData.Use();
         switch (_direction)
 		{
 			case Direction.Right: {

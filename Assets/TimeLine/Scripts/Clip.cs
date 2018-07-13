@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class Clip : MonoBehaviour, IDragOwner {
+public class Clip : MonoBehaviour, IDragOwner, IBeginDragHandler, IEndDragHandler, IDragHandler, IClipHandler {
 
 	[System.Serializable]
 	public class DragEvent : UnityEvent<float> { }
@@ -24,6 +24,7 @@ public class Clip : MonoBehaviour, IDragOwner {
 
 	private int _startFrame;
 	private int _endFrame;
+	public Canvas canvas;
 
 	private void Awake() {
 		_rectTransform = this.GetComponent<RectTransform>();
@@ -110,4 +111,40 @@ public class Clip : MonoBehaviour, IDragOwner {
 	public void SetWidth(float width) {
 		_rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
 	}
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+		if(PrefabController.ClipDragCurrent) {
+			Destroy(PrefabController.ClipDragCurrent.gameObject);
+			Destroy(this.gameObject);
+		}
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+		eventData.Use();
+        
+		float deltaY = eventData.position.y - _rectTransform.position.y;
+		if(Mathf.Abs(deltaY) > 0.4f * _rectTransform.rect.height && !PrefabController.ClipDragCurrent) {
+			// User wants to move clip to different layer!
+			PrefabController.ClipDragCurrent = Instantiate(PrefabController.ClipDragPrefab);
+			PrefabController.ClipDragCurrent.transform.SetParent(PrefabController.CanvasInstance.transform, false);
+			PrefabController.ClipDragCurrent.SetData(_clipData);
+		}
+		if(PrefabController.ClipDragCurrent) {
+			PrefabController.ClipDragCurrent.SetPosition(eventData.position);
+			return;
+		}
+		_rectTransform.anchoredPosition += new Vector2(eventData.delta.x, 0);
+    }
+
+    public ClipData GetClip()
+    {
+        return _clipData;
+    }
 }

@@ -8,15 +8,7 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class ClipRaw : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IClipHandler
 {
-	[SerializeField]
-	private Canvas _canvas;
-
 	private ClipData _clipData;
-
-	[SerializeField]
-	private ClipDrag _clipDragPrefab;
-
-	private ClipDrag _clipDrag;
 
 	public Texture2D _icon;
 
@@ -34,19 +26,19 @@ public class ClipRaw : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        _clipDrag = Instantiate(_clipDragPrefab);
-		_clipDrag.transform.SetParent(_canvas.transform, false);
-		_clipDrag.SetData(_clipData);
+        PrefabController.ClipDragCurrent = Instantiate(PrefabController.ClipDragPrefab);
+		PrefabController.ClipDragCurrent.transform.SetParent(PrefabController.CanvasInstance.transform, false);
+		PrefabController.ClipDragCurrent.SetData(_clipData);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        _clipDrag.SetPosition(eventData.position);
+		PrefabController.ClipDragCurrent.SetPosition(eventData.position);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Destroy(_clipDrag.gameObject);
+        Destroy(PrefabController.ClipDragCurrent.gameObject);
     }
 
     public ClipData GetClip()

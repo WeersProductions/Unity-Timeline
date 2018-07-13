@@ -945,6 +945,16 @@ Prefab:
       propertyPath: _timestamp
       value: 
       objectReference: {fileID: 1654829063}
+    - target: {fileID: 224537378470400382, guid: 3f0474cbf0a1a44e9beced597c805965,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224702717388886748, guid: 3f0474cbf0a1a44e9beced597c805965,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f0474cbf0a1a44e9beced597c805965, type: 2}
   m_IsPrefabParent: 0
@@ -1246,6 +1256,61 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!1 &1470522841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1470522843}
+  - component: {fileID: 1470522842}
+  - component: {fileID: 1470522844}
+  m_Layer: 0
+  m_Name: Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1470522842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470522841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e05ea7377ca4dd686d11e1e9d83d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1470522843
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470522841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470522844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470522841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2d38b2f951b4ee1a0b2dc284e8fd3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clipDragPrefab: {fileID: 114325184262263270, guid: d670d04d68b2a4c878feaa2f3a6ee3aa,
+    type: 2}
+  _canvas: {fileID: 1487554155}
 --- !u!1 &1487554152
 GameObject:
   m_ObjectHideFlags: 0
