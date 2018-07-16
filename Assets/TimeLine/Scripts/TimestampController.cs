@@ -29,6 +29,9 @@ public class TimestampController : MonoBehaviour, IBeginDragHandler, IEndDragHan
 
 	private RectTransform _rectTransform;
 
+	[SerializeField]
+	private List<Timebar> _timeBars;
+
 	private void Awake() {
 		_rectTransform = GetComponent<RectTransform>();
 	}
@@ -79,6 +82,10 @@ public class TimestampController : MonoBehaviour, IBeginDragHandler, IEndDragHan
 		SetTimestamp(FrameToPosition(_currentFrame));
 
 		UpdateTexts();
+
+		for(int i = 0; i < _timeBars.Count; i++) {
+			_timeBars[i].MoveTime(-DeltaFrameToPosition(amount));
+		}
 	}
 
 	private float FrameToPosition(int frameNumber, bool clamp = true) {
@@ -88,6 +95,11 @@ public class TimestampController : MonoBehaviour, IBeginDragHandler, IEndDragHan
 		} else {
 			return result;
 		}
+	}
+
+	private float DeltaFrameToPosition(int frameNumber) {
+		float result = (float)frameNumber/ (_endWindow - _startWindow) * _rectTransform.rect.width;
+		return result;
 	}
 
 	private void UpdateTexts() {

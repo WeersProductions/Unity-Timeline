@@ -198,6 +198,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Clip+DragEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  canvas: {fileID: 0}
 --- !u!114 &114364940747964708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -398,10 +399,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.23823965, y: 0}
-  m_AnchorMax: {x: 0.73273736, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.25020027}
-  m_SizeDelta: {x: 0, y: -0.026000977}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 421.5, y: -0.25020027}
+  m_SizeDelta: {x: 429, y: -0.026000977}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224781711463923478
 RectTransform:

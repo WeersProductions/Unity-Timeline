@@ -57,8 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab13a6d3b70c441e88f3a9df05e7f028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clipDragPrefab: {fileID: 114325184262263270, guid: d670d04d68b2a4c878feaa2f3a6ee3aa,
-    type: 2}
+  _icon: {fileID: 2800000, guid: 5ffc6c50a648d47e58e327f12165dae0, type: 3}
 --- !u!114 &114333921740816986
 MonoBehaviour:
   m_ObjectHideFlags: 1

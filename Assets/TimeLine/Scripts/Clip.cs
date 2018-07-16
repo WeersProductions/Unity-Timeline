@@ -26,12 +26,27 @@ public class Clip : MonoBehaviour, IDragOwner, IBeginDragHandler, IEndDragHandle
 	private int _endFrame;
 	public Canvas canvas;
 
+	private Timebar _owner;
+
+	public Timebar Owner {
+		get {
+			return _owner;
+		}
+		set {
+			_owner = value;
+		}
+	}
+
 	private void Awake() {
 		_rectTransform = this.GetComponent<RectTransform>();
 		DragHandler[] dragHandlers = this.GetComponentsInChildren<DragHandler>();
 		for(int i = 0; i < dragHandlers.Length; i++) {
 			dragHandlers[i].SetOwner(this);
 		}
+	}
+
+	private void OnDestroy() {
+		_owner.RemoveClip(this);
 	}
 
 	public void SetClip(ClipData clipData) {
@@ -113,6 +128,7 @@ public class Clip : MonoBehaviour, IDragOwner, IBeginDragHandler, IEndDragHandle
 	}
 
 	public void MovePosition(float deltaX) {
+		Debug.Log(deltaX);
 		_rectTransform.anchoredPosition += new Vector2(deltaX, 0);
 	}
 

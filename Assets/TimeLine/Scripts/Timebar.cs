@@ -31,6 +31,8 @@ public class Timebar : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoint
 			// clip.transform.position = new Vector2(eventData.position.x, _rectTransform.position.z);
 			clip.SetHeight(_rectTransform.rect.height);
 			clip.SetClip(clipDrag);
+
+			AddClip(clip);
 		}
     }
 
@@ -70,5 +72,14 @@ public class Timebar : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoint
 		for(int i = 0; i < _clips.Count; i++){
 			_clips[i].MovePosition(time);
 		}
+	}
+
+	public void AddClip(Clip clip) {
+		clip.Owner = this;
+		_clips.Add(clip);
+	}
+
+	public void RemoveClip(Clip clip) {
+		_clips.Remove(clip);
 	}
 }
